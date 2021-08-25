@@ -1,0 +1,31 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd"
+>
+    <services>
+        <defaults autoconfigure="true" autowire="true" public="false" />
+
+        <prototype namespace="App\User\Application\"
+                   resource="../../../../Application/*"
+                   exclude="../../../../Application/Form"
+        />
+
+        <prototype namespace="App\User\Infrastructure\SymfonyIntegration\"
+                   resource="../../*"
+                   exclude="../../{DependencyInjection,Resources}/*"
+        />
+
+        <prototype namespace="App\User\UserInterface\"
+                   resource="../../../../UserInterface/*"
+                   exclude="../../../../UserInterface/{DependencyInjection,Resources,Controller}/*"
+        />
+
+        <prototype namespace="App\User\UserInterface\Controller\"
+                   resource="../../../../UserInterface/Controller/*"
+                   public="true"
+        >
+            <tag name="controller.service_arguments" />
+        </prototype>
+    </services>
+</container>

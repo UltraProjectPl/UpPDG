@@ -7,7 +7,7 @@ use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 use DateTimeImmutable;
 
-class Session
+final class Session
 {
     private UuidInterface $id;
 
@@ -31,6 +31,46 @@ class Session
         $this->token = self::createToken();
 
         $this->tokenValidTo = new DateTimeImmutable('+12 hours');
+    }
+
+    public function getId(): UuidInterface
+    {
+        return $this->id;
+    }
+
+    public function getToken(): string
+    {
+        return $this->token;
+    }
+
+    public function getUser(): User
+    {
+        return $this->user;
+    }
+
+    public function getTokenValidTo(): DateTimeImmutable
+    {
+        return $this->tokenValidTo;
+    }
+
+    public function getFirstLoginIp(): ?string
+    {
+        return $this->firstLoginIp;
+    }
+
+    public function getCreatedAt(): DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function getUpdatedAt(): DateTimeImmutable
+    {
+        return $this->updatedAt;
+    }
+
+    public function getDeletedAt(): DateTimeImmutable
+    {
+        return $this->deletedAt;
     }
 
     private static function createToken(): string

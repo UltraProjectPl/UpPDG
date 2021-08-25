@@ -5,7 +5,7 @@ namespace App\SharedKernel\Application\Bus;
 
 use App\SharedKernel\Application\Event\EventInterface;
 
-interface EvenBusInterface
+interface EventBusInterface
 {
     public function dispatch(EventInterface $event): void;
 }
