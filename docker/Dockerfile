@@ -4,11 +4,12 @@ RUN apt-get update -yqq && \
   apt-get install -yqq --no-install-recommends \
     apt-utils \
     libzip-dev zip unzip \
-    git
+    git \
+    libpq-dev
 
 RUN curl -o /usr/local/bin/composer https://getcomposer.org/composer.phar && chmod +x /usr/local/bin/composer
 
-RUN docker-php-ext-install pdo_mysql
+RUN docker-php-ext-install pdo pdo_pgsql
 RUN docker-php-ext-install zip
 
 COPY vhost.conf /etc/apache2/sites-available/

@@ -17,7 +17,7 @@ services:
     image: postgres
     container_name: postgres
     ports:
-      - "3306:3306"
+      - "5432:5432"
     environment:
       - POSTGRES_DB=UpPDG
       - POSTGRES_USER=postgres
