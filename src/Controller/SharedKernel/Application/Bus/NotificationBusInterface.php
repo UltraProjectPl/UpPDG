@@ -5,7 +5,7 @@ namespace App\Controller\SharedKernel\Application\Bus;
 
 use App\Controller\SharedKernel\Application\Notification\NotificationInterface;
 
-interface NotificationBus
+interface NotificationBusInterface
 {
     public function send(NotificationInterface $notification): void;
 }
