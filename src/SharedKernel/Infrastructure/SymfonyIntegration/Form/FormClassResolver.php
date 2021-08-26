@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace App\SharedKernel\Infrastructure\Form;
+namespace App\SharedKernel\Infrastructure\SymfonyIntegration\Form;
 
 use App\SharedKernel\Application\Form\FormInterface;
 use InvalidArgumentException;
 
-class FormClassResolver
+final class FormClassResolver
 {
     public function __construct(private array $forms)
     {
@@ -16,7 +16,9 @@ class FormClassResolver
     {
         $form = array_reduce(
             $this->forms,
-            fn (?FormInterface $accumulator, FormInterface $form): ?FormInterface => true === $form instanceof $type ? $form : $accumulator
+            static function (?FormInterface $accumulator, FormInterface $form) use ($type): ?FormInterface {
+                return true === $form instanceof $type ? $form : $accumulator;
+            }
         );
 
         if (null === $form) {

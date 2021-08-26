@@ -7,7 +7,6 @@ use Symfony\Component\HttpFoundation\Request;
 
 interface FormHandlerFactoryInterface
 {
-    public function createWithRequest(?Request $request, string $type, mixed $data = null, array $options = []): FormHandlerInterface;
+    public function createFromRequest(Request $request, string $type, mixed $data = null, array $options = []): FormHandlerInterface;
 
-    public function createWithName(string $name, string $type, mixed $data = null, array $options = []): FormHandlerInterface;
 }

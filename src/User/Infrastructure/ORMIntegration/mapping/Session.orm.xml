@@ -10,8 +10,6 @@
 
         <field name="token" nullable="true" />
 
-        <field name="loginDate" type="datetime_immutable" />
-
         <field name="tokenValidTo" type="datetime_immutable" nullable="true" />
         <field name="firstLoginIp" nullable="true" />
 

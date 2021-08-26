@@ -21,7 +21,7 @@ class SharedKernelExtension extends Extension
         $container->registerForAutoconfiguration(NotificationHandlerInterface::class)->addTag('messenger.message_handler');
         $container->registerForAutoconfiguration(EventSubscriberInterface::class)->addTag('messenger.message_handler');
 
-        $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config/services'));
+        $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
 
         $loader->load('services.xml');
         $loader->load('buses.xml');;

@@ -9,8 +9,8 @@
         <prototype namespace="App\User\Infrastructure\ORMIntegration\Repository\"
                    resource="../../../ORMIntegration/Repository/*"/>
 
-        <service id="App\User\Domain\User" alias="App\User\Infrastructure\ORMIntegration\Repository\Users"/>
+        <service id="App\User\Domain\Users" alias="App\User\Infrastructure\ORMIntegration\Repository\Users"/>
 
-        <service id="App\User\Domain\Session" alias="App\User\Infrastructure\ORMIntegration\Repository\Sessions"/>
+        <service id="App\User\Domain\Sessions" alias="App\User\Infrastructure\ORMIntegration\Repository\Sessions"/>
     </services>
 </container>

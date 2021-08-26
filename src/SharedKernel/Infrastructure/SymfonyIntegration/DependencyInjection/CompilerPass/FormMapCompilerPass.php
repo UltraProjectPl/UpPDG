@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace App\SharedKernel\Infrastructure\SymfonyIntegration\DependencyInjection\CompilerPass;
 
 use App\SharedKernel\Application\Form\FormInterface;
-use App\SharedKernel\Infrastructure\Form\FormClassResolver;
+use App\SharedKernel\Infrastructure\SymfonyIntegration\Form\FormClassResolver;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use InvalidArgumentException;

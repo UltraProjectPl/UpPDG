@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace App\User\Application\Form\DTO\Security;
+namespace App\User\Application\Form\Dto\Security;
 
 use App\User\Application\Command\CreateUser;
 

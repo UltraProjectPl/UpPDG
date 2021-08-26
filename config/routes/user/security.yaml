@@ -1,0 +1,9 @@
+register:
+  path: /register
+  controller: App\User\UserInterface\Controller\Security\RegisterController::index
+  methods: POST
+
+security:
+  path: /security
+  controller: App\User\UserInterface\Controller\Security\SecurityController::index
+  methods: POST

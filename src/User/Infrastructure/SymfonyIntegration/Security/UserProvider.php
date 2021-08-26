@@ -43,6 +43,11 @@ final class UserProvider implements UserProviderInterface
         return $this->loadUserByUsername($user->getUserIdentifier());
     }
 
+    public function loadUserByIdentifier(string $identifier): UserInterface
+    {
+        return $this->loadUserByUsername($identifier);
+    }
+
     public function supportsClass(string $class): bool
     {
         return SecurityUser::class === $class;

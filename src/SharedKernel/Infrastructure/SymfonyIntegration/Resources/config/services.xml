@@ -1,0 +1,44 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd"
+>
+    <services>
+        <prototype
+                namespace="App\SharedKernel\Application\"
+                resource="../../../../Application/*"
+        />
+
+        <prototype namespace="App\SharedKernel\Infrastructure\SymfonyIntegration\"
+                   resource="../../*"
+                   exclude="../../{DependencyInjection,Resources}/*"
+        />
+
+        <prototype namespace="App\SharedKernel\UserInterface\"
+                   resource="../../../../UserInterface/*"
+                   exclude="../../../../UserInterface/{Controller}/*"
+        />
+
+        <service id="App\SharedKernel\UserInterface\Http\ResponseFactoryInterface"
+                 alias="App\SharedKernel\Infrastructure\SymfonyIntegration\Http\ResponseFactory" />
+
+        <service id="App\SharedKernel\Infrastructure\SymfonyIntegration\Form\FormHandlerFactory" autowire="true" />
+
+        <service id="App\SharedKernel\Application\Form\FormHandlerFactoryInterface"
+                 alias="App\SharedKernel\Infrastructure\SymfonyIntegration\Form\FormHandlerFactory" />
+
+        <service id="App\SharedKernel\Application\Bus\CommandBusInterface"
+                 alias="App\SharedKernel\Infrastructure\SymfonyIntegration\Messenger\CommandBus" />
+
+        <service id="App\SharedKernel\Application\Bus\QueryBusInterface"
+                 alias="App\SharedKernel\Infrastructure\SymfonyIntegration\Messenger\QueryBus" />
+
+        <service id="App\SharedKernel\Application\Bus\EventBusInterface"
+                 alias="App\SharedKernel\Infrastructure\SymfonyIntegration\Messenger\EventBus" />
+
+        <service id="app.request_listener"
+                 class="App\SharedKernel\Infrastructure\SymfonyIntegration\KernelEventListener\RequestListener">
+            <tag name="kernel.event_listener" event="kernel.request" />
+        </service>
+    </services>
+</container>

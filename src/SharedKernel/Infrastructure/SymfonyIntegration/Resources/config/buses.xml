@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <defaults autoconfigure="true" autowire="true" public="false" />
+
+        <prototype namespace="App\SharedKernel\Infrastructure\SymfonyIntegration\Messenger\"
+                   resource="../../Messenger/*"
+        />
+
+        <service id="App\SharedKernel\Infrastructure\SymfonyIntegration\Messenger\CommandBus">
+            <argument type="service" id="messenger.bus.commands" />
+        </service>
+
+        <service id="App\SharedKernel\Infrastructure\SymfonyIntegration\Messenger\EventBus">
+            <argument type="service" id="messenger.bus.events" />
+        </service>
+
+        <service id="App\SharedKernel\Infrastructure\SymfonyIntegration\Messenger\NotificationBus">
+            <argument type="service" id="messenger.bus.notifications" />
+        </service>
+
+        <service id="App\SharedKernel\Infrastructure\SymfonyIntegration\Messenger\QueryBus">
+            <argument type="service" id="messenger.bus.queries" />
+        </service>
+    </services>
+</container>
