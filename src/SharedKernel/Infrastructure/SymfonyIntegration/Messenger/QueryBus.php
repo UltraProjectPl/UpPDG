@@ -6,7 +6,7 @@ namespace App\SharedKernel\Infrastructure\SymfonyIntegration\Messenger;
 use App\SharedKernel\Application\Bus\QueryBusInterface;
 use Symfony\Component\Messenger\Stamp\HandledStamp;
 
-class QueryBus extends Bus implements QueryBusInterface
+final class QueryBus extends Bus implements QueryBusInterface
 {
     public function query(object $query): mixed
     {

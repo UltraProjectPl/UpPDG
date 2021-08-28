@@ -7,7 +7,7 @@ use App\SharedKernel\Application\Event\EventInterface;
 use App\User\Domain\Session;
 use App\User\Domain\User;
 
-final class UserLoggedId implements EventInterface
+final class UserLogged implements EventInterface
 {
     public function __construct(private User $user, private Session $session)
     {

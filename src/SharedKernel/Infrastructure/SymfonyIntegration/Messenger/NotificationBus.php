@@ -6,7 +6,7 @@ namespace App\SharedKernel\Infrastructure\SymfonyIntegration\Messenger;
 use App\SharedKernel\Application\Bus\NotificationBusInterface;
 use App\SharedKernel\Application\Notification\NotificationInterface;
 
-class NotificationBus extends Bus implements NotificationBusInterface
+final class NotificationBus extends Bus implements NotificationBusInterface
 {
     private array $notifications = [];
 

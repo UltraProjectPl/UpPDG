@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\User\Infrastructure\SymfonyIntegration\Form\Security;
 
-use App\User\Application\Form\DTO\Security\RegisterDto;
+use App\User\Application\Form\Dto\Security\RegisterDto;
 use App\User\Application\Form\Security\RegisterFormInterface;
 use App\User\Infrastructure\SymfonyIntegration\Validation\UniqueEmail;
 use Symfony\Component\Form\AbstractType;

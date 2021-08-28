@@ -6,6 +6,7 @@ namespace App\User\Application\CommandHandler;
 use App\SharedKernel\Application\Bus\CommandHandlerInterface;
 use App\SharedKernel\Application\Bus\EventBusInterface;
 use App\User\Application\Command\LoginUser;
+use App\User\Application\Event\UserLogged;
 use App\User\Domain\Session;
 use App\User\Domain\Sessions;
 
@@ -24,6 +25,6 @@ final class LoginUserHandler implements CommandHandlerInterface
 
         $this->sessions->add($session);
 
-        $this->eventBus->dispatch(UserLogged);
+        $this->eventBus->dispatch(new UserLogged(user: $session->getUser(), session: $session));
     }
 }

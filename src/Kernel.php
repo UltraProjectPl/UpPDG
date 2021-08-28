@@ -9,41 +9,30 @@ use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
 
 class Kernel extends BaseKernel
 {
-    private const CONFIG_EXTS = '.{php,xml,yaml,yml}';
-
     use MicroKernelTrait;
-
-    public function getProjectDir(): string
-    {
-        return dirname(__DIR__);
-    }
-
-    public function registerBundles(): iterable
-    {
-        $contents = require $this->getProjectDir() . '/config/bundles.php';
-        foreach ($contents as $class => $envs) {
-            if ($envs[$this->environment] ?? $envs['all'] ?? false) {
-                yield new $class();
-            }
-        }
-    }
 
     protected function configureContainer(ContainerConfigurator $container): void
     {
-        $confDir = $this->getProjectDir() . '/config';
+        $container->import('../config/{packages}/*.yaml');
+        $container->import('../config/{packages}/'.$this->environment.'/*.yaml');
 
-        $container->import($confDir . '/{packages}/*' . self::CONFIG_EXTS, 'glob');
-        $container->import($confDir . '/{packages}/' . $this->environment . '/**/*' . self::CONFIG_EXTS, 'glob');
-        $container->import($confDir . '/{services}' . self::CONFIG_EXTS, 'glob');
-        $container->import($confDir . '/{services}_' . $this->environment . self::CONFIG_EXTS, 'glob');
+        if (is_file(\dirname(__DIR__).'/config/services.yaml')) {
+            $container->import('../config/services.yaml');
+            $container->import('../config/{services}_'.$this->environment.'.yaml');
+        } else {
+            $container->import('../config/{services}.php');
+        }
     }
 
     protected function configureRoutes(RoutingConfigurator $routes): void
     {
-        $confDir = $this->getProjectDir() . '/config';
+        $routes->import('../config/{routes}/'.$this->environment.'/*.yaml');
+        $routes->import('../config/{routes}/*.yaml');
 
-        $routes->import($confDir . '/{routes}/' . $this->environment . '/**/*' . self::CONFIG_EXTS, '/', 'glob');
-        $routes->import($confDir . '/{routes}/*' . self::CONFIG_EXTS, '/', 'glob');
-        $routes->import($confDir . '/{routes}' . self::CONFIG_EXTS, '/', 'glob');
+        if (is_file(\dirname(__DIR__).'/config/routes.yaml')) {
+            $routes->import('../config/routes.yaml');
+        } else {
+            $routes->import('../config/{routes}.php');
+        }
     }
 }

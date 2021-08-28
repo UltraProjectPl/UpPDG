@@ -12,7 +12,7 @@ final class RequestListener
         $request = $event->getRequest();
 
         if ('json' === $request->getContentType()) {
-            $data = json_decode((string) $request->getContent(), true);
+            $data = json_decode((string) $request->getContent(), true)  ?? [];
             $request->request->replace($data);
         }
     }

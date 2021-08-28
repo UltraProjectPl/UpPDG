@@ -1,7 +1,3 @@
 security:
   resource: "routes/user/security.yaml"
   prefix: /api/v1/auth
-
-user:
-  resource: "routes/user/user.yaml"
-  prefix: /api/v1/user

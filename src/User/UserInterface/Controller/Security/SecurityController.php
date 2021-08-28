@@ -8,7 +8,7 @@ use App\SharedKernel\Application\Bus\QueryBusInterface;
 use App\SharedKernel\Application\Form\FormHandlerFactoryInterface;
 use App\SharedKernel\UserInterface\Http\ResponseFactoryInterface;
 use App\User\Application\Command\LoginUser;
-use App\User\Application\Form\DTO\Security\SecurityDto;
+use App\User\Application\Form\Dto\Security\SecurityDto;
 use App\User\Application\Form\Security\SecurityFormInterface;
 use App\User\Application\Query\ActiveSessionByUserEmail;
 use App\User\Application\Query\UserByEmail;
@@ -25,13 +25,13 @@ final class SecurityController
         private FormHandlerFactoryInterface $formHandlerFactory,
         private CommandBusInterface $commandBus,
         private QueryBusInterface $queryBus,
-    )
-    {
+    ) {
     }
 
     public function index(Request $request): Response
     {
-        $formHandler = $this->formHandlerFactory->createWithRequest($request, SecurityFormInterface::class);
+        $formHandler = $this->formHandlerFactory->createFromRequest($request, SecurityFormInterface::class);
+
         if (true === $formHandler->isSubmissionValid()) {
             /** @var SecurityDto $dto */
             $dto = $formHandler->getData();
@@ -46,7 +46,7 @@ final class SecurityController
             /** @var Session[] $sessions */
             $sessions = $this->queryBus->query(new ActiveSessionByUserEmail($user->getEmail()));
 
-            if (0 < count($sessions)) {
+            if (0 === count($sessions)) {
                 throw new RuntimeException(
                     sprintf('Failed to authorization user with email: %s', $user->getEmail())
                 );

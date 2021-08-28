@@ -4,12 +4,13 @@ declare(strict_types=1);
 namespace App\User\Infrastructure\SymfonyIntegration\Security;
 
 use App\SharedKernel\Application\Bus\QueryBusInterface;
+use App\User\Application\Query\SessionByToken;
 use App\User\Application\Query\UserByEmail;
 use App\User\Infrastructure\SymfonyIntegration\Security\User as SecurityUser;
 use Symfony\Component\Security\Core\Exception\UserNotFoundException;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
-use App\User\Domain\User;
+use RuntimeException;
 
 final class UserProvider implements UserProviderInterface
 {
@@ -19,23 +20,19 @@ final class UserProvider implements UserProviderInterface
     }
 
 
-    public function loadUserByUsername(string $username): UserInterface
+    public function loadUserByUsername(string $token): UserInterface
     {
-        if ('' === $username) {
+        if ('' === $token) {
             throw new UserNotFoundException('No username provider.');
         }
 
-        if (false === filter_var($username, FILTER_VALIDATE_EMAIL)) {
-            throw new UserNotFoundException(sprintf('Username "%s% isn\'t a valid email address', $username));
+        $sessions = $this->queryBus->query(new SessionByToken($token));
+
+        if (0 === count($sessions)) {
+            throw new RuntimeException('Failed to authorization.');
         }
 
-        $user = $this->queryBus->query(new UserByEmail($username));
-
-        if ($user !== null) {
-            throw new UserNotFoundException(sprintf('User "%s" wasn\'t found.', $username));
-        }
-
-        return new SecurityUser($user);
+        return new SecurityUser($sessions[0]->getUser());
     }
 
     public function refreshUser(UserInterface $user): UserInterface

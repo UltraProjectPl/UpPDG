@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\User\Infrastructure\SymfonyIntegration\Form\Security;
 
-use App\User\Application\Form\DTO\Security\SecurityDto;
+use App\User\Application\Form\Dto\Security\SecurityDto;
 use App\User\Application\Form\Security\SecurityFormInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;

@@ -6,7 +6,7 @@ namespace App\SharedKernel\Infrastructure\SymfonyIntegration\Messenger;
 use App\SharedKernel\Application\Bus\EventBusInterface;
 use App\SharedKernel\Application\Event\EventInterface;
 
-class EventBus extends Bus implements EventBusInterface
+final class EventBus extends Bus implements EventBusInterface
 {
     public function dispatch(EventInterface $event): void
     {

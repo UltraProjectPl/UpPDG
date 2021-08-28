@@ -7,7 +7,7 @@ interface Sessions
 {
     public function add(Session $session): void;
 
-    public function findOneByActiveUserEmail(string $email): ?Session;
+    public function findByActiveUserEmail(string $email): array;
 
-    public function findOneByToken(string $token): ?Session;
+    public function findByToken(string $token): array;
 }

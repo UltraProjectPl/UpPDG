@@ -12,7 +12,19 @@ RUN curl -o /usr/local/bin/composer https://getcomposer.org/composer.phar && chm
 RUN docker-php-ext-install pdo pdo_pgsql
 RUN docker-php-ext-install zip
 
+
+RUN pecl install xdebug
+RUN docker-php-ext-enable xdebug
+
+RUN echo " \n\
+xdebug.mode=develop,debug \n\
+xdebug.client_host=host.docker.internal \n\
+xdebug.discover_client_host=1 \n\
+xdebug.idekey=PHPSTORM \n\
+" >> /usr/local/etc/php/php.ini
+
 COPY vhost.conf /etc/apache2/sites-available/
+
 RUN a2enmod rewrite
 RUN a2dissite 000-default && a2ensite vhost
 

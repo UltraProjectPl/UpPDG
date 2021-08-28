@@ -15,7 +15,7 @@ class Sessions extends EntityRepository implements DomainSessions
         $this->persistEntity($session);
     }
 
-    public function findOneByActiveUserEmail(string $email): ?Session
+    public function findByActiveUserEmail(string $email): array
     {
         return $this
             ->getORMRepository(Session::class)
@@ -28,7 +28,7 @@ class Sessions extends EntityRepository implements DomainSessions
         ;
     }
 
-    public function findOneByToken(string $token): ?Session
+    public function findByToken(string $token): array
     {
         return $this
             ->getORMRepository(Session::class)
@@ -36,7 +36,7 @@ class Sessions extends EntityRepository implements DomainSessions
             ->where('s.token = :token')
             ->setParameters(['token' => $token])
             ->getQuery()
-            ->getOneOrNullResult()
+            ->getResult()
             ;
     }
 }

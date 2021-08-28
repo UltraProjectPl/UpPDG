@@ -7,7 +7,7 @@ use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 use DateTimeImmutable;
 
-final class Session
+class Session
 {
     private UuidInterface $id;
 
