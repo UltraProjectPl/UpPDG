@@ -10,11 +10,16 @@ final class User implements UserInterface
 {
     public const ROLE = 'ROLE_USER';
 
-    public function __construct(private DomainUser $user)
+    public function __construct(private DomainUser $user, private string $token)
     {
     }
 
-    public function getUsername(): string
+    public function getUser(): DomainUser
+    {
+        return $this->user;
+    }
+
+    public function getUsername(): ?string
     {
         return $this->user->getEmail();
     }
@@ -22,10 +27,10 @@ final class User implements UserInterface
 
     public function getUserIdentifier(): string
     {
-        return $this->user->getEmail();
+        return $this->token;
     }
 
-    public function getPassword(): string
+    public function getPassword(): ?string
     {
         return $this->user->getPassword();
     }

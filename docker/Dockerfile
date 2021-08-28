@@ -12,6 +12,7 @@ RUN curl -o /usr/local/bin/composer https://getcomposer.org/composer.phar && chm
 RUN docker-php-ext-install pdo pdo_pgsql
 RUN docker-php-ext-install zip
 
+RUN docker-php-ext-install bcmath
 
 RUN pecl install xdebug
 RUN docker-php-ext-enable xdebug

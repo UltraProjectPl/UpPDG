@@ -5,7 +5,8 @@ namespace App\User\Infrastructure\SymfonyIntegration\Security;
 
 use App\SharedKernel\Application\Bus\QueryBusInterface;
 use App\User\Application\Query\SessionByToken;
-use App\User\Application\Query\UserByEmail;
+use App\User\Domain\Session;
+use App\User\Domain\Sessions;
 use App\User\Infrastructure\SymfonyIntegration\Security\User as SecurityUser;
 use Symfony\Component\Security\Core\Exception\UserNotFoundException;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -26,13 +27,14 @@ final class UserProvider implements UserProviderInterface
             throw new UserNotFoundException('No username provider.');
         }
 
+        /** @var Session[] $sessions */
         $sessions = $this->queryBus->query(new SessionByToken($token));
 
         if (0 === count($sessions)) {
             throw new RuntimeException('Failed to authorization.');
         }
 
-        return new SecurityUser($sessions[0]->getUser());
+        return new SecurityUser($sessions[0]->getUser(), $sessions[0]->getToken());
     }
 
     public function refreshUser(UserInterface $user): UserInterface

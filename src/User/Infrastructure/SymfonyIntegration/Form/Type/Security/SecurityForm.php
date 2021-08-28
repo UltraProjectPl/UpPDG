@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace App\User\Infrastructure\SymfonyIntegration\Form\Security;
+namespace App\User\Infrastructure\SymfonyIntegration\Form\Type\Security;
 
 use App\User\Application\Form\Dto\Security\SecurityDto;
-use App\User\Application\Form\Security\SecurityFormInterface;
+use App\User\Application\Form\Type\Security\SecurityFormInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -16,7 +16,7 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 
 final class SecurityForm extends AbstractType implements SecurityFormInterface
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('email', EmailType::class, [

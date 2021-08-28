@@ -1,6 +1,8 @@
 doctrine:
     dbal:
         url: '%env(resolve:DATABASE_URL)%'
+        types:
+            currency: App\SharedKernel\Infrastructure\ORMIntegration\DBAL\Types\Currency
     orm:
         auto_generate_proxy_classes: true
         naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
@@ -11,4 +13,16 @@ doctrine:
                 dir: "%kernel.project_dir%/src/User/Infrastructure/ORMIntegration/mapping"
                 alias: User
                 prefix: App\User\Domain
+                is_bundle: false
+            Employer:
+                type: xml
+                dir: "%kernel.project_dir%/src/Employer/Infrastructure/ORMIntegration/mapping"
+                alias: User
+                prefix: App\Employer\Domain
+                is_bundle: false
+            money:
+                type: xml
+                dir: "%kernel.project_dir%/src/SharedKernel/Infrastructure/ORMIntegration/mapping-money"
+                alias: Money
+                prefix: Money
                 is_bundle: false

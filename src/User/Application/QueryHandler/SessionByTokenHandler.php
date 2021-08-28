@@ -16,7 +16,6 @@ final class SessionByTokenHandler implements QueryHandlerInterface
     {
     }
 
-    #[ArrayShape([Session::class])]
     public function __invoke(SessionByToken $query): array
     {
         return $this->sessions->findByToken($query->getToken());

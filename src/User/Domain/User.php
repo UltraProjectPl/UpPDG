@@ -3,17 +3,16 @@ declare(strict_types=1);
 
 namespace App\User\Domain;
 
+use App\SharedKernel\Domain\TimeStamp;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
-use DateTimeImmutable;
+use JsonSerializable;
 
-class User
+class User implements JsonSerializable
 {
-    private UuidInterface $id;
+    use TimeStamp;
 
-    private DateTimeImmutable $createdAt;
-    private DateTimeImmutable $updatedAt;
-    private DateTimeImmutable $deletedAt;
+    private UuidInterface $id;
 
     public function __construct(
         private string $email,
@@ -22,9 +21,8 @@ class User
         private string $password,
     ) {
         $this->id = Uuid::uuid4();
-        $this->createdAt = new DateTimeImmutable();
-        $this->updatedAt = new DateTimeImmutable();
-        $this->deletedAt = new DateTimeImmutable();
+
+        $this->setTimeStamp();
     }
 
     public function getId(): UuidInterface
@@ -52,18 +50,17 @@ class User
         return $this->password;
     }
 
-    public function getCreatedAt(): DateTimeImmutable
+    public function jsonSerialize(): array
     {
-        return $this->createdAt;
-    }
-
-    public function getUpdatedAt(): DateTimeImmutable
-    {
-        return $this->updatedAt;
-    }
-
-    public function getDeletedAt(): DateTimeImmutable
-    {
-        return $this->deletedAt;
+        return [
+            'id' => $this->id,
+            'email' => $this->email,
+            'firstName' => $this->firstName,
+            'lastName' => $this->lastName,
+            'password' => $this->password,
+            'createdAt' => $this->createdAt,
+            'updatedAt' => $this->updatedAt,
+            'deletedAt' => $this->deletedAt,
+        ];
     }
 }
