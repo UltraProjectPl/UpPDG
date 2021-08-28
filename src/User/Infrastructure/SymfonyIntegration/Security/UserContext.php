@@ -16,7 +16,7 @@ final class UserContext implements UserContextInterface
 
     public function isLoggedIn(): bool
     {
-        return null === $this->getCurrentUser();
+        return null !== $this->getCurrentUser();
     }
 
     public function getCurrentUser(): ?User

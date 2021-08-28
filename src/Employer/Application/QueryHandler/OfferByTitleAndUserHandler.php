@@ -14,7 +14,7 @@ final class OfferByTitleAndUserHandler implements QueryHandlerInterface
     {
     }
 
-    public function __invoke(OfferByTitleAndUser $query): Offer
+    public function __invoke(OfferByTitleAndUser $query): ?Offer
     {
         return $this->offers->getOfferByTitleAndUser(title: $query->getTitle(), user: $query->getUser());
     }
