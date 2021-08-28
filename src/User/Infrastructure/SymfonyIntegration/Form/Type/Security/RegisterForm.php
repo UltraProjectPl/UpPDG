@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace App\User\Infrastructure\SymfonyIntegration\Form\Security;
+namespace App\User\Infrastructure\SymfonyIntegration\Form\Type\Security;
 
 use App\User\Application\Form\Dto\Security\RegisterDto;
-use App\User\Application\Form\Security\RegisterFormInterface;
+use App\User\Application\Form\Type\Security\RegisterFormInterface;
 use App\User\Infrastructure\SymfonyIntegration\Validation\UniqueEmail;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -17,7 +17,7 @@ use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
-class RegisterForm extends AbstractType implements RegisterFormInterface
+final class RegisterForm extends AbstractType implements RegisterFormInterface
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {

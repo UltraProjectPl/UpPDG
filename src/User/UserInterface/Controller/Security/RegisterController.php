@@ -8,7 +8,7 @@ use App\SharedKernel\Application\Bus\QueryBusInterface;
 use App\SharedKernel\Application\Form\FormHandlerFactoryInterface;
 use App\SharedKernel\UserInterface\Http\ResponseFactoryInterface;
 use App\User\Application\Form\Dto\Security\RegisterDto;
-use App\User\Application\Form\Security\RegisterFormInterface;
+use App\User\Application\Form\Type\Security\RegisterFormInterface;
 use App\User\Application\Query\UserByEmail;
 use App\User\Domain\User;
 use Symfony\Component\HttpFoundation\Request;
@@ -29,26 +29,27 @@ final class RegisterController
     {
         $formHandler = $this->formHandlerFactory->createFromRequest($request, RegisterFormInterface::class);
 
-        if (true === $formHandler->isSubmissionValid()) {
-            /** @var RegisterDto $dto */
-            $dto = $formHandler->getData();
-
-            $this->commandBus->dispatch($dto->toCommand());
-
-            /** @var User|null $user */
-            $user = $this->queryBus->query(new UserByEmail($dto->email));
-
-            if (null === $user) {
-                throw new RuntimeException(
-                    sprintf('Failed to create and/or retrieve user with email: "%s"', $dto->email)
-                );
-            }
-
-            return $this->responseFactory->create([
-                'email' => $user->getEmail(),
-            ]);
+        if (false === $formHandler->isSubmissionValid()) {
+            return $this->responseFactory->error($formHandler->getErrors());
         }
 
-        return $this->responseFactory->error($formHandler->getErrors());
+        /** @var RegisterDto $dto */
+        $dto = $formHandler->getData();
+
+        $this->commandBus->dispatch($dto->toCommand());
+
+        /** @var User|null $user */
+        $user = $this->queryBus->query(new UserByEmail($dto->email));
+
+        if (null === $user) {
+            throw new RuntimeException(
+                sprintf('Failed to create and/or retrieve user with email: "%s"', $dto->email)
+            );
+        }
+
+        return $this->responseFactory->create([
+            'email' => $user->getEmail(),
+        ]);
+
     }
 }

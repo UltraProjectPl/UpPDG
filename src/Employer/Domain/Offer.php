@@ -5,10 +5,11 @@ namespace App\Employer\Domain;
 
 use App\SharedKernel\Domain\TimeStamp;
 use App\User\Domain\User;
+use JsonSerializable;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
-class Offer
+class Offer implements JsonSerializable
 {
     use TimeStamp;
 
@@ -19,12 +20,15 @@ class Offer
         private string $title,
         private string $companyName,
         private PaymentSpreads $paymentSpreads,
+        private string $city,
         private bool $remoteWorkPossible = false,
         private bool $remoteWorkOnly = false,
         private ?string $nip = null,
         private ?string $tin = null,
     ) {
         $this->id = Uuid::uuid4();
+
+        $this->setTimeStamp();
     }
 
     public function getId(): UuidInterface
@@ -52,6 +56,11 @@ class Offer
         return $this->paymentSpreads;
     }
 
+    public function getCity(): string
+    {
+        return $this->city;
+    }
+
     public function isRemoteWorkPossible(): bool
     {
         return $this->remoteWorkPossible;
@@ -70,5 +79,24 @@ class Offer
     public function getTin(): ?string
     {
         return $this->tin;
+    }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'id' => $this->id,
+            'creator' => $this->creator,
+            'title' => $this->title,
+            'companyName' => $this->companyName,
+            'paymentSpreads' => $this->paymentSpreads,
+            'city' => $this->city,
+            'remoteWorkPossible' => $this->remoteWorkPossible,
+            'remoteWorkOnly' => $this->remoteWorkOnly,
+            'nip' => $this->nip,
+            'tin' => $this->tin,
+            'createdAt' => $this->createdAt,
+            'updatedAt' => $this->updatedAt,
+            'deletedAt' => $this->deletedAt,
+        ];
     }
 }

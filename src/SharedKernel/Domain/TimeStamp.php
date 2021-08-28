@@ -25,4 +25,11 @@ trait TimeStamp
     {
         return $this->deletedAt;
     }
+
+    private function setTimeStamp(): void
+    {
+        $this->createdAt = new DateTimeImmutable();
+        $this->updatedAt = new DateTimeImmutable();
+        $this->deletedAt = new DateTimeImmutable();
+    }
 }

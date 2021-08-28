@@ -8,7 +8,7 @@ use App\User\Application\Query\UserByEmail;
 use App\User\Domain\User;
 use App\User\Domain\Users;
 
-class UserByEmailHandler implements QueryHandlerInterface
+final class UserByEmailHandler implements QueryHandlerInterface
 {
     public function __construct(private Users $users)
     {

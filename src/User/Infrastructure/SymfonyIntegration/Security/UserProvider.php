@@ -5,7 +5,6 @@ namespace App\User\Infrastructure\SymfonyIntegration\Security;
 
 use App\SharedKernel\Application\Bus\QueryBusInterface;
 use App\User\Application\Query\SessionByToken;
-use App\User\Application\Query\UserByEmail;
 use App\User\Infrastructure\SymfonyIntegration\Security\User as SecurityUser;
 use Symfony\Component\Security\Core\Exception\UserNotFoundException;
 use Symfony\Component\Security\Core\User\UserInterface;

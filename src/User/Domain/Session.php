@@ -23,13 +23,12 @@ class Session
         private ?string $firstLoginIp
     ) {
         $this->id = Uuid::uuid4();
-        $this->createdAt = new DateTimeImmutable();
-        $this->updatedAt = new DateTimeImmutable();
-        $this->deletedAt = new DateTimeImmutable();
 
         $this->token = self::createToken();
 
         $this->tokenValidTo = new DateTimeImmutable('+12 hours');
+
+        $this->setTimeStamp();
     }
 
     public function getId(): UuidInterface

@@ -14,6 +14,11 @@ final class User implements UserInterface
     {
     }
 
+    public function getUser(): DomainUser
+    {
+        return $this->user;
+    }
+
     public function getUsername(): string
     {
         return $this->user->getEmail();
