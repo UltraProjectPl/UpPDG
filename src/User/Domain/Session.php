@@ -3,19 +3,18 @@ declare(strict_types=1);
 
 namespace App\User\Domain;
 
+use App\SharedKernel\Domain\TimeStamp;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 use DateTimeImmutable;
 
 class Session
 {
+    use TimeStamp;
+
     private UuidInterface $id;
 
     private string $token;
-
-    private DateTimeImmutable $createdAt;
-    private DateTimeImmutable $updatedAt;
-    private DateTimeImmutable $deletedAt;
 
     private DateTimeImmutable $tokenValidTo;
 

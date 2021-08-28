@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                   https://raw.github.com/doctrine/doctrine2/master/doctrine-mapping.xsd">
+    <entity name="App\Employer\Domain\Offer" table="offers">
+        <id name="id" type="uuid">
+            <generator strategy="NONE" />
+        </id>
+
+        <embedded name="paymentSpreads" class="App\Employer\Domain\PaymentSpreads" />
+
+        <field name="title" />
+        <field name="companyName" />
+        <field name="remoteWorkPossible" type="boolean" />
+        <field name="remoteWorkOnly" type="boolean" />
+        <field name="nip" type="boolean" nullable="true" />
+        <field name="tin" type="boolean" nullable="true" />
+
+        <many-to-one field="creator" target-entity="App\User\Domain\User">
+            <join-column nullable="false" />
+        </many-to-one>
+
+        <field name="createdAt" type="datetime_immutable" />
+        <field name="updatedAt" type="datetime_immutable" />
+        <field name="deletedAt" type="datetime_immutable" />
+    </entity>
+</doctrine-mapping>

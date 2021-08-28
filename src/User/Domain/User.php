@@ -3,17 +3,16 @@ declare(strict_types=1);
 
 namespace App\User\Domain;
 
+use App\SharedKernel\Domain\TimeStamp;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 use DateTimeImmutable;
 
 class User
 {
-    private UuidInterface $id;
+    use TimeStamp;
 
-    private DateTimeImmutable $createdAt;
-    private DateTimeImmutable $updatedAt;
-    private DateTimeImmutable $deletedAt;
+    private UuidInterface $id;
 
     public function __construct(
         private string $email,

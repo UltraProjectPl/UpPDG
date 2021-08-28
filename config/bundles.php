@@ -3,6 +3,7 @@
 return [
     App\SharedKernel\Infrastructure\SymfonyIntegration\SharedKernelBundle::class => ['all' => true],
     App\User\Infrastructure\SymfonyIntegration\UserBundle::class => ['all' => true],
+    App\Employer\Infrastructure\SymfonyIntegration\EmployerBundle::class => ['all' => true],
 
     Symfony\Bundle\FrameworkBundle\FrameworkBundle::class => ['all' => true],
     Symfony\Bundle\SecurityBundle\SecurityBundle::class => ['all' => true],
