@@ -1,10 +1,24 @@
 actor: FunctionalTester
 modules:
     enabled:
-        - App\Tests\Module\:
-            app_path: 'src'
-            environment: 'test'
-#        - Doctrine2:
-#            depends: Symfony
-#            cleanup: true
+        - App\Tests\Module\SharedKernel\SymfonyModule:
+              app_path: 'src'
+              cache_router: false
+              kernel_class: App\Kernel
+              environment: 'test'
+              rebootable_client: false
+        - REST:
+            depends: App\Tests\Module\SharedKernel\SymfonyModule
+            url: 'http://localhost/api/v1'
         - \App\Tests\Helper\Functional
+        - App\Tests\Module\SharedKernel\ContainerModule
+        - App\Tests\Module\SharedKernel\ApiModule
+        - App\Tests\Module\SharedKernel\MessengerModule
+env:
+    doctrine:
+        modules:
+            enabled:
+                - App\Tests\Module\SharedKernel\DoctrineMdule
+            config:
+                App\Tests\Module\SharedKernel\SymfonyModule:
+                    environment: 'test_doctrine'

@@ -10,5 +10,5 @@ interface ResponseFactoryInterface
     public function data(mixed $data, int $status = Response::HTTP_OK): Response;
     public function authorization(mixed $data, int $status = Response::HTTP_OK): Response;
     public function create(mixed $data, int $status = Response::HTTP_CREATED): Response;
-    public function error(mixed $data, int $status = Response::HTTP_BAD_REQUEST): Response;
+    public function error(array $errors, int $status = Response::HTTP_BAD_REQUEST): Response;
 }

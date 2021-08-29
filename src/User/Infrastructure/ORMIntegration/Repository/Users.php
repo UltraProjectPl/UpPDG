@@ -23,27 +23,20 @@ class Users extends EntityRepository implements DomainUsers
 
     public function getUniqueSlug(User $user): string
     {
-        $slug = Transliterator::urlize($user->getFirstName() . $user->getLastName());
+        $slug = Transliterator::urlize($user->getFirstName() . '.' . $user->getLastName());
 
         $results = $this->getORMRepository(User::class)
             ->createQueryBuilder('u')
             ->select('u.slug')
-            ->where('REGEX(u.slug, :slug) = 1')
-            ->setParameter('slug', '^' . preg_quote($slug, '#') . '\d+$')
+            ->where('u.slug LIKE :slug')
+            ->setParameter('slug', $slug . '%')
             ->getQuery()
             ->getResult(Query::HYDRATE_SCALAR)
         ;
 
-        $userToSlugSuffixMapper = fn (string $currentSlug): int => (int) mb_strlen($currentSlug, mb_strlen($slug));
-        $maxSlugSuffixReducer = fn (?int $max, int $current): ?int => max($max, $current);
 
 
-        $maxSuffix = array_reduce(
-            array_map($userToSlugSuffixMapper, $results),
-            $maxSlugSuffixReducer,
-            null,
-        );
+        return $slug . (count($results) === 0 ? '' : (string) count($results));
 
-        return sprintf('%s%d', $slug, $maxSuffix + 1);
     }
 }
