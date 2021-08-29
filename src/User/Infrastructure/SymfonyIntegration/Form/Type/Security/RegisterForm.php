@@ -33,17 +33,19 @@ final class RegisterForm extends AbstractType implements RegisterFormInterface
             ->add('firstName', TextType::class, [
                 'constraints' => [
                     new NotBlank(),
+                    new Length(['max' => 255]),
                 ]
             ])
             ->add('lastName', TextType::class, [
                 'constraints' => [
                     new NotBlank(),
+                    new Length(['max' => 255]),
                 ]
             ])
             ->add('password', PasswordType::class, [
                 'constraints' => [
                     new NotBlank(),
-                    new Length(['min' => 3, 'max' => 255]),
+                    new Length(['min' => 6, 'max' => 32]),
                 ]
             ]);
     }

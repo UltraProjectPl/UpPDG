@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\User\Application\Form\Dto\Security;
 
+use App\SharedKernel\Domain\Security\PlainPassword;
 use App\User\Application\Command\CreateUser;
 
 final class RegisterDto
@@ -18,7 +19,7 @@ final class RegisterDto
             email: $this->email,
             firstName: $this->firstName,
             lastName: $this->lastName,
-            password: $this->password,
+            password: new PlainPassword($this->password),
         );
     }
 }

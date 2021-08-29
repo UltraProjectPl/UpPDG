@@ -51,7 +51,7 @@ class AddOfferController
         $offer = $this->queryBus->query(new OfferById($offer->getId()));
 
         if (null === $offer) {
-            return $this->responseFactory->error('Failed created offer', Response::HTTP_INTERNAL_SERVER_ERROR);
+            return $this->responseFactory->error('Failed created offer');
         }
 
         return $this->responseFactory->create($offer);

@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\User\Application\Command;
 
 use App\SharedKernel\Application\Command\CommandInterface;
+use App\SharedKernel\Domain\Security\PlainPassword;
 
 final class CreateUser implements CommandInterface
 {
@@ -11,7 +12,7 @@ final class CreateUser implements CommandInterface
         private string $email,
         private string $firstName,
         private string $lastName,
-        private string $password,
+        private PlainPassword $password,
     ) {
     }
 
@@ -30,7 +31,7 @@ final class CreateUser implements CommandInterface
         return $this->lastName;
     }
 
-    public function getPassword(): string
+    public function getPassword(): PlainPassword
     {
         return $this->password;
     }

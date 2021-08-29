@@ -10,3 +10,7 @@
 ###< symfony/framework-bundle ###
 
 xdebug.log
+###> phpunit/phpunit ###
+/phpunit.xml
+.phpunit.result.cache
+###< phpunit/phpunit ###

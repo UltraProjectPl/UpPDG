@@ -12,6 +12,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Email;
+use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 final class SecurityForm extends AbstractType implements SecurityFormInterface
@@ -28,6 +29,7 @@ final class SecurityForm extends AbstractType implements SecurityFormInterface
             ->add('password', PasswordType::class, [
                 'constraints' => [
                     new NotBlank(),
+                    new Length(['min' => 6, 'max' => 32])
                 ],
             ]);
     }

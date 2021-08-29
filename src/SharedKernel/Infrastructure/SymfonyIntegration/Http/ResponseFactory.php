@@ -31,10 +31,11 @@ final class ResponseFactory implements ResponseFactoryInterface
         ], $status);
     }
 
-    public function error(mixed $data, int $status = Response::HTTP_BAD_REQUEST): Response
+    public function error(array $errors, int $status = Response::HTTP_BAD_REQUEST): Response
     {
         return new JsonResponse([
-            'error' => $data,
+            'message' => 'Request does not meet validation requirements.',
+            'errors' => $errors,
         ], $status);
     }
 }
