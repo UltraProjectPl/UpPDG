@@ -3,3 +3,10 @@ modules:
     enabled:
         - Asserts
         - \App\Tests\Helper\Unit
+        - App\Tests\Module\SharedKernel\SymfonyModule:
+              app_path: 'src'
+              cache_router: false
+              kernel_class: App\Kernel
+              environment: 'test'
+              rebootable_client: false
+        - App\Tests\Module\SharedKernel\FormValidationModule
