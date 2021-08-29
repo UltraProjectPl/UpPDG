@@ -23,6 +23,7 @@ final class CreateUserHandler implements CommandHandlerInterface
             email: $command->getEmail(),
             firstName: $command->getFirstName(),
             lastName: $command->getLastName(),
+            repository: $this->users,
             password: $command->getPassword(),
         );
 

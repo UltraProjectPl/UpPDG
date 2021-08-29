@@ -6,10 +6,10 @@ namespace App\Tests\unit\SharedKernel\Infrastructure\SymfonyIntegration\Form;
 use App\SharedKernel\Application\Form\FormInterface;
 use App\SharedKernel\Infrastructure\SymfonyIntegration\Form\FormClassResolver;
 use App\User\Application\Form\Type\Security\RegisterFormInterface;
-use PHPUnit\Framework\TestCase;
+use Codeception\Test\Unit;
 use InvalidArgumentException;
 
-class FormClassResolverTest extends TestCase
+class FormClassResolverTest extends Unit
 {
     public function testNotSupportedClass(): void
     {

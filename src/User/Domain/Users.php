@@ -8,4 +8,6 @@ interface Users
     public function add(User $user): void;
 
     public function findOneByEmail(string $email): ?User;
+
+    public function getUniqueSlug(User $user): string;
 }
