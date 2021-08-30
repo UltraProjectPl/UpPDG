@@ -17,7 +17,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Security;
 
-class AddOfferController
+final class AddOfferController
 {
     public function __construct(
         private ResponseFactoryInterface $responseFactory,
