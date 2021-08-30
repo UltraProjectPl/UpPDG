@@ -23,7 +23,7 @@
         </many-to-one>
 
         <field name="createdAt" type="datetime_immutable" />
-        <field name="updatedAt" type="datetime_immutable" />
-        <field name="deletedAt" type="datetime_immutable" />
+        <field name="updatedAt" type="datetime_immutable" nullable="true" />
+        <field name="deletedAt" type="datetime_immutable" nullable="true" />
     </entity>
 </doctrine-mapping>
