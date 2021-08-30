@@ -11,7 +11,7 @@
 
         <prototype namespace="App\SharedKernel\Infrastructure\SymfonyIntegration\"
                    resource="../../*"
-                   exclude="../../{DependencyInjection,Resources}/*"
+                   exclude="../../{Command,DependencyInjection,Resources}/*"
         />
 
         <prototype namespace="App\SharedKernel\UserInterface\"

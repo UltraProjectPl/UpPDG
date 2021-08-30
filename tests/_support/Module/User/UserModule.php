@@ -58,8 +58,8 @@ class UserModule extends Module
         $faker = Factory::create('pl_PL');
         $command = new CreateUser(
             email: $email ?? $faker->email,
-            firstName: $firstName ?? $faker->firstName,
-            lastName: $lastName ?? $faker->lastName,
+            firstName: $firstName ?? $faker->firstName(),
+            lastName: $lastName ?? $faker->lastName(),
             password: new PlainPassword($password ?? $faker->password(6)),
         );
 

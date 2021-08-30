@@ -9,7 +9,7 @@ use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use InvalidArgumentException;
 
-class FormMapCompilerPass implements CompilerPassInterface
+final class FormMapCompilerPass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container): void
     {
