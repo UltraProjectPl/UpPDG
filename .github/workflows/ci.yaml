@@ -1,0 +1,58 @@
+name: Testing with PostgreSQL
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 3
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.0'
+          tools: composer:v2
+          extensions: pgsql
+        env:
+          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/UpPDG?serverVersion=13&charset=utf8
+
+      - name: Get composer cache directory
+        id: composer-cache
+        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+      - name: Cache composer dependencies
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.os }}-composer-
+
+      - name: Install Composer dependencies
+        run: composer install --no-progress --prefer-dist --optimize-autoloader
+
+      - name: Setup database
+        run: |
+          composer require --dev symfony/orm-pack
+          composer run setup-database-test
+        env:
+          DATABASE_URL: postgres://postgres:postgres@localhost:5432/UpPDG?charset=UTF-8
+
+      - name: Run tests
+        run: |
+          vendor/bin/codecept build
+          vendor/bin/codecept run unit
+          vendor/bin/codecept run functional
+        env:
+          DATABASE_URL: postgres://postgres:postgres@localhost:5432/UpPDG?charset=UTF-8

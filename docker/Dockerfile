@@ -14,6 +14,10 @@ RUN docker-php-ext-install zip
 
 RUN docker-php-ext-install bcmath
 
+ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
+
+RUN chmod +x /usr/local/bin/install-php-extensions && sync && install-php-extensions http
+
 RUN pecl install xdebug
 RUN docker-php-ext-enable xdebug
 
