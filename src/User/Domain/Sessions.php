@@ -9,5 +9,5 @@ interface Sessions
 
     public function findByActiveUserEmail(string $email): array;
 
-    public function findByToken(string $token): array;
+    public function findByToken(string $token): ?Session;
 }

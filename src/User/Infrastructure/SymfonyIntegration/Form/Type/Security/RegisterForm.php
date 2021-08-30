@@ -55,7 +55,7 @@ final class RegisterForm extends AbstractType implements RegisterFormInterface
         $resolver->setDefaults([
             'data_class' => RegisterDto::class,
             'csrf_protection' => false,
-            'method' => Request::METHOD_POST
+            'method' => Request::METHOD_POST,
         ]);
     }
 }

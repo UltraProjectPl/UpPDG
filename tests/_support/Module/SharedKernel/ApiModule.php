@@ -51,10 +51,13 @@ class ApiModule extends Module
         $this->rest->seeResponseCodeIs($code);
     }
 
-    public function successfullySendApiPostRequest(string $url, array $parameters = [], int $response = HttpCode::OK, array $files = []): void
+    public function successfullySendApiPostRequest(string $url, array $parameters = [], int $response = HttpCode::OK, ?string $token = null, array $files = []): void
     {
         $this->rest->haveHttpHeader('Accept', 'application/json');
         $this->rest->haveHttpHeader('X-Requested-With', 'XMLHttpRequest');
+        if (null !== $token) {
+            $this->rest->haveHttpHeader('Authorization', $token);
+        }
         $this->rest->sendPOST($url, $parameters, $files);
         $this->rest->seeResponseIsJson();
         $this->rest->seeResponseCodeIs($response);
@@ -63,11 +66,15 @@ class ApiModule extends Module
     public function unsuccessfullySendApiPostRequest(
         string $url,
         array $parameters = [],
+        int $code = HttpCode::BAD_REQUEST,
+        ?string $token = null,
         array $files = [],
-        int $code = HttpCode::BAD_REQUEST
     ): void {
         $this->rest->haveHttpHeader('Accept', 'application/json');
         $this->rest->haveHttpHeader('X-Requested-With', 'XMLHttpRequest');
+        if (null !== $token) {
+            $this->rest->haveHttpHeader('Authorization', $token);
+        }
         $this->rest->sendPOST($url, $parameters, $files);
         $this->rest->seeResponseIsJson();
         $this->rest->seeResponseCodeIs($code);

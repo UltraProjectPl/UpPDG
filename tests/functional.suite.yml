@@ -8,17 +8,22 @@ modules:
               environment: 'test'
               rebootable_client: false
         - REST:
-            depends: App\Tests\Module\SharedKernel\SymfonyModule
-            url: 'http://localhost/api/v1'
+              depends: App\Tests\Module\SharedKernel\SymfonyModule
+              url: 'http://localhost/api/v1'
+        - Doctrine2:
+              depends: App\Tests\Module\SharedKernel\SymfonyModule
+              cleanup: true
+              purge_mode: 1
         - \App\Tests\Helper\Functional
         - App\Tests\Module\SharedKernel\ContainerModule
         - App\Tests\Module\SharedKernel\ApiModule
         - App\Tests\Module\SharedKernel\MessengerModule
+        - App\Tests\Module\User\UserModule
 env:
     doctrine:
         modules:
             enabled:
-                - App\Tests\Module\SharedKernel\DoctrineMdule
+                - App\Tests\Module\SharedKernel\DoctrineModule
             config:
                 App\Tests\Module\SharedKernel\SymfonyModule:
-                    environment: 'test_doctrine'
+                    environment: 'test'

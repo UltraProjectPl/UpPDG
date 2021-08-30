@@ -40,5 +40,12 @@
                  class="App\SharedKernel\Infrastructure\SymfonyIntegration\KernelEventListener\RequestListener">
             <tag name="kernel.event_listener" event="kernel.request" />
         </service>
+
+        <service id="app.api_exception_subscriber"
+                 class="App\SharedKernel\Infrastructure\SymfonyIntegration\KernelEventListener\ApiExceptionSubscriber"
+        >
+            <tag name="kernel.event_subscriber" />
+            <argument type="service" id="App\SharedKernel\UserInterface\Http\ResponseFactoryInterface"/>
+        </service>
     </services>
 </container>

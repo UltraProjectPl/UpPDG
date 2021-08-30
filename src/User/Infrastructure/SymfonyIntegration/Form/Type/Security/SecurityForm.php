@@ -29,7 +29,7 @@ final class SecurityForm extends AbstractType implements SecurityFormInterface
             ->add('password', PasswordType::class, [
                 'constraints' => [
                     new NotBlank(),
-                    new Length(['min' => 6, 'max' => 32])
+                    new Length(['min' => 6, 'max' => 32]),
                 ],
             ]);
     }

@@ -28,7 +28,7 @@ class Sessions extends EntityRepository implements DomainSessions
         ;
     }
 
-    public function findByToken(string $token): array
+    public function findByToken(string $token): ?Session
     {
         return $this
             ->getORMRepository(Session::class)
@@ -36,7 +36,7 @@ class Sessions extends EntityRepository implements DomainSessions
             ->where('s.token = :token')
             ->setParameters(['token' => $token])
             ->getQuery()
-            ->getResult()
-            ;
+            ->getOneOrNullResult()
+        ;
     }
 }

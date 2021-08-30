@@ -27,14 +27,13 @@ final class UserProvider implements UserProviderInterface
             throw new UserNotFoundException('No username provider.');
         }
 
-        /** @var Session[] $sessions */
-        $sessions = $this->queryBus->query(new SessionByToken($token));
+        $session = $this->queryBus->query(new SessionByToken($token));
 
-        if (0 === count($sessions)) {
+        if (null === $session) {
             throw new RuntimeException('Failed to authorization.');
         }
 
-        return new SecurityUser($sessions[0]->getUser(), $sessions[0]->getToken());
+        return new SecurityUser($session->getUser(), $session->getToken());
     }
 
     public function refreshUser(UserInterface $user): UserInterface

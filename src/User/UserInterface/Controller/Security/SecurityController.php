@@ -6,6 +6,7 @@ namespace App\User\UserInterface\Controller\Security;
 use App\SharedKernel\Application\Bus\CommandBusInterface;
 use App\SharedKernel\Application\Bus\QueryBusInterface;
 use App\SharedKernel\Application\Form\FormHandlerFactoryInterface;
+use App\SharedKernel\Domain\Security\PasswordHashing;
 use App\SharedKernel\UserInterface\Http\ResponseFactoryInterface;
 use App\User\Application\Command\LoginUser;
 use App\User\Application\Form\Dto\Security\SecurityDto;
@@ -32,7 +33,7 @@ final class SecurityController
     {
         $formHandler = $this->formHandlerFactory->createFromRequest($request, SecurityFormInterface::class);
 
-        if (true === $formHandler->isSubmissionValid()) {
+        if (false === $formHandler->isSubmissionValid()) {
             return $this->responseFactory->error($formHandler->getErrors());
         }
 
@@ -40,7 +41,7 @@ final class SecurityController
         $dto = $formHandler->getData();
 
         $user = $this->queryBus->query(new UserByEmail($dto->email));
-        if (false === $user instanceof User) {
+        if (false === $user instanceof User || false === PasswordHashing::passwordVerify($user->getPassword(), $dto->password)) {
             return $this->responseFactory->error('Invalid login data');
         }
 
