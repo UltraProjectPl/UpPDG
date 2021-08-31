@@ -47,6 +47,7 @@ class OfferForm extends AbstractType implements OfferFormInterface
             ])
             ->add('remoteWorkPossible', CheckboxType::class)
             ->add('remoteWorkOnly', CheckboxType::class)
+            ->add('disabled', CheckboxType::class)
             // @todo validation GUS
             ->add('nip', IntegerType::class, [
                 'required' => false,

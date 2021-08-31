@@ -1,24 +1,55 @@
 version: '3.8'
 
 services:
-  web:
-    build:
-      context: ./docker
-      dockerfile: Dockerfile
-      target: api
-    container_name: web
-    ports:
-      - "80:80"
-    volumes:
-      - .:/var/www/html
-    depends_on:
-      - postgres
-  postgres:
-    image: postgres
-    container_name: postgres
-    ports:
-      - "5432:5432"
-    environment:
-      - POSTGRES_DB=UpPDG
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+    web:
+        build:
+            context: ./docker
+            dockerfile: Dockerfile
+            target: api
+        container_name: web
+        ports:
+            - "80:80"
+        volumes:
+            - .:/var/www/html
+        depends_on:
+          - postgres
+
+    worker:
+        build:
+            context: ./docker
+            dockerfile: Dockerfile
+            target: worker
+        container_name: worker
+        volumes:
+            - .:/var/www/html
+        depends_on:
+            - postgres
+            - redis
+
+    scheduler:
+        build:
+            context: ./docker
+            dockerfile: Dockerfile
+            target: scheduler
+        container_name: scheduler
+        volumes:
+            - .:/var/www/html
+        depends_on:
+          - postgres
+          - redis
+
+    postgres:
+        image: postgres
+        container_name: postgres
+        ports:
+            - "5432:5432"
+        environment:
+            - POSTGRES_DB=UpPDG
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=postgres
+
+    redis:
+        image: redis:6-alpine
+        container_name: redis
+        ports:
+            - "6379:6379"

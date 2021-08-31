@@ -8,6 +8,7 @@ use App\User\Domain\User;
 use JsonSerializable;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
+use RuntimeException;
 
 class Offer implements JsonSerializable
 {
@@ -23,6 +24,7 @@ class Offer implements JsonSerializable
         private string $city,
         private bool $remoteWorkPossible = false,
         private bool $remoteWorkOnly = false,
+        private bool $active = true,
         private ?string $nip = null,
         private ?string $tin = null,
     ) {
@@ -61,6 +63,11 @@ class Offer implements JsonSerializable
         return $this->city;
     }
 
+    public function isActive(): bool
+    {
+        return $this->active;
+    }
+
     public function isRemoteWorkPossible(): bool
     {
         return $this->remoteWorkPossible;
@@ -79,6 +86,28 @@ class Offer implements JsonSerializable
     public function getTin(): ?string
     {
         return $this->tin;
+    }
+
+    public function activate(): self
+    {
+        if (false === $this->active) {
+            throw new RuntimeException("Offer '{$this->id->toString()}' is already active.");
+        }
+
+        $this->active = true;
+
+        return $this;
+    }
+
+    public function deactivate(): self
+    {
+        if (true === $this->active) {
+            throw new RuntimeException("Offer '{$this->id->toString()}' is already deactivate.");
+        }
+
+        $this->active = false;
+
+        return $this;
     }
 
     public function jsonSerialize(): array

@@ -68,6 +68,7 @@ final class LoadOfferData implements FixtureInterface, SharedFixtureInterface, D
                 city: $faker->city(),
                 remoteWorkPossible: $faker->boolean(),
                 remoteWorkOnly: $faker->boolean(),
+                active: $faker->boolean(95),
             );
 
             $this->commandBus->dispatch(new AddOffer($offer));
