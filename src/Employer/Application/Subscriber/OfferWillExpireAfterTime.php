@@ -25,7 +25,15 @@ class OfferWillExpireAfterTime implements EventSubscriberInterface
 
         /** @var Offer $offer */
         foreach ($offers as $offer) {
+            if (false === $offer->isActive()) {
+                continue;
+            }
+
             $passedDay = (int) $offer->getCreatedAt()->diff($now)->format('%a');
+            if (null !== $offer->getUpdatedAt()) {
+                $passedDay = (int) $offer->getUpdatedAt()->diff($now)->format('%a');
+            }
+
             if ($passedDay >= 30) {
                 $this->commandBus->dispatch(new ExpireOffer($offer));
             }
