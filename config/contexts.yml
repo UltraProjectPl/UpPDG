@@ -1,0 +1,35 @@
+paths:
+    - ../src
+    - ../tests
+exclude_files: ~
+layers:
+    - name: SharedKernel
+      collectors:
+          - type: className
+            regex: App\\SharedKernel\\.*
+    - name: User
+      collectors:
+          - type: className
+            regex: App\\User\\.*
+          - type: className
+            regex: App\\Tests\\User\\.*
+          - type: className
+            regex: App\\Tests\\Repository\\User\\.*
+          - type: className
+            regex: App\\Tests\\Module\\User\\.*
+    - name: Employer
+      collectors:
+          - type: className
+            regex: App\\Employer\\.*
+          - type: className
+            regex: App\\Tests\\Employer\\.*
+          - type: className
+            regex: App\\Tests\\Repository\\Employer\\.*
+          - type: className
+            regex: App\\Tests\\Module\\Employer\\.*
+ruleset:
+    User:
+        - SharedKernel
+    Employer:
+        - SharedKernel
+        - User

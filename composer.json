@@ -74,6 +74,11 @@
         ],
         "sniffer": "vendor/bin/phpcs",
         "stan": "vendor/bin/phpstan analyse -l 7 -c phpstan.neon src --ansi",
+        "deptrac": [
+            "[ -f vendor/bin/deptrac.phar ] || curl -LS https://github.com/sensiolabs-de/deptrac/releases/download/0.15.0/deptrac.phar -o vendor/bin/deptrac.phar && chmod +x vendor/bin/deptrac.phar",
+            "vendor/bin/deptrac.phar analyse config/contexts.yml",
+            "vendor/bin/deptrac.phar analyse config/layers.yml"
+        ],
         "post-install-cmd": [
             "@auto-scripts"
         ],

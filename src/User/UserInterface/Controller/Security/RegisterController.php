@@ -7,7 +7,6 @@ namespace App\User\UserInterface\Controller\Security;
 use App\SharedKernel\Application\Bus\CommandBusInterface;
 use App\SharedKernel\Application\Bus\QueryBusInterface;
 use App\SharedKernel\Application\Form\FormHandlerFactoryInterface;
-use App\SharedKernel\Application\Validation\ValidatorInterface;
 use App\SharedKernel\UserInterface\Http\ResponseFactoryInterface;
 use App\User\Application\Form\Dto\Security\RegisterDto;
 use App\User\Application\Form\Type\Security\RegisterFormInterface;

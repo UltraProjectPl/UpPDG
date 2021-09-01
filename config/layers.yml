@@ -1,0 +1,54 @@
+paths:
+  - ../src
+  - ../tests
+exclude_files: ~
+layers:
+  - name: Domain
+    collectors:
+      - type: className
+        regex: App\\[a-z]+\\Domain\\.*
+      - type: className
+        regex: App\\Tests\\[a-z]+\\Domain\\.*
+  - name: Application
+    collectors:
+      - type: className
+        regex: App\\[a-z]+\\Application\\.*
+      - type: className
+        regex: App\\Tests\\[a-z]+\\Application\\.*
+  - name: ORMIntegration
+    collectors:
+      - type: className
+        regex: App\\[a-z]+\\Infrastructure\\ORMIntegration\\.*
+  - name: SymfonyIntegration
+    collectors:
+      - type: className
+        regex: App\\[a-z]+\\Infrastructure\\SymfonyIntegration\\.*
+      - type: className
+        regex: App\\Tests\\[a-z]+\\Infrastructure\\SymfonyIntegration\\.*
+  - name: UserInterface
+    collectors:
+      - type: className
+        regex: App\\[a-z]+\\UserInterface\\.*
+      - type: className
+        regex: App\\Tests\\[a-z]+\\UserInterface\\.*
+  - name: Symfony
+    collectors:
+      - type: className
+        regex: ^Symfony\\.*
+
+ruleset:
+  Application:
+    - Domain
+  ORMIntegration:
+    - Domain
+    - Application
+  SymfonyIntegration:
+    - Domain
+    - Application
+    - UserInterface
+    - Symfony
+  UserInterface:
+    - Domain
+    - Application
+    - SymfonyIntegration
+    - Symfony
