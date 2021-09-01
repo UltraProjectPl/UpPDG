@@ -22,7 +22,5 @@ final class ExpireOfferHandler implements CommandHandlerInterface
         $offer->deactivate();
 
         $this->eventBus->dispatch(new OfferStateChangedEvent($offer));
-
-        $this->entityManager->flush();
     }
 }

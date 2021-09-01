@@ -23,7 +23,5 @@ final class ActiveOfferHandler implements CommandHandlerInterface
         $offer->activate();
 
         $this->eventBus->dispatch(new OfferStateChangedEvent($offer));
-
-        $this->entityManager->flush();
     }
 }

@@ -52,5 +52,14 @@
             <argument type="service" id="App\SharedKernel\Infrastructure\SymfonyIntegration\Messenger\EventBus"/>
             <tag name="console.command" />
         </service>
+
+        <service id="Symfony\Bridge\Doctrine\Messenger\DoctrineTransactionMiddleware" >
+            <argument type="service" id="Doctrine\Persistence\ManagerRegistry"/>
+        </service>
+
+        <service id="App\SharedKernel\Infrastructure\SymfonyIntegration\Messenger\Middleware\SynchronizeWithAsynchronousCommandsMiddleware" >
+            <argument type="service" id="messenger.transport.symfony_serializer" />
+            <argument type="service" id="doctrine.dbal.default_connection" on-invalid="null" />
+        </service>
     </services>
 </container>
