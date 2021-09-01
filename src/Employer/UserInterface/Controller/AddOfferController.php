@@ -17,7 +17,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Security;
 
-class AddOfferController
+final class AddOfferController
 {
     public function __construct(
         private ResponseFactoryInterface $responseFactory,
@@ -30,10 +30,6 @@ class AddOfferController
 
     public function index(Request $request): Response
     {
-        if (false === $this->userContext->isLoggedIn()) {
-            return $this->responseFactory->error([], Response::HTTP_UNAUTHORIZED);
-        }
-
         $creator = $this->userContext->getCurrentUser();
 
         $formHandler = $this->formHandlerFactory->createFromRequest($request, OfferFormInterface::class);

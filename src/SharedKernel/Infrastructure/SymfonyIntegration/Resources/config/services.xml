@@ -47,5 +47,10 @@
             <tag name="kernel.event_subscriber" />
             <argument type="service" id="App\SharedKernel\UserInterface\Http\ResponseFactoryInterface"/>
         </service>
+
+        <service class="App\SharedKernel\Infrastructure\SymfonyIntegration\Console\DispatchEventCommand" id="app.shared_kernel.infrastructure.symfony_integration.console.dispatch_event_command">
+            <argument type="service" id="App\SharedKernel\Infrastructure\SymfonyIntegration\Messenger\EventBus"/>
+            <tag name="console.command" />
+        </service>
     </services>
 </container>

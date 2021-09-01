@@ -14,6 +14,7 @@ final class OfferDto
     public ?string $city = null;
     public ?bool $remoteWorkPossible = null;
     public ?bool $remoteWorkOnly = null;
+    public ?bool $active = null;
     public ?string $nip = null;
     public ?string $tin = null;
 
@@ -27,6 +28,7 @@ final class OfferDto
             city: $this->city,
             remoteWorkPossible: $this->remoteWorkPossible,
             remoteWorkOnly: $this->remoteWorkOnly,
+            active: $this->active,
             nip: $this->nip,
             tin: $this->tin,
         );

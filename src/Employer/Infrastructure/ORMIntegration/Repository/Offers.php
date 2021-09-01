@@ -16,6 +16,11 @@ final class Offers extends EntityRepository implements DomainOffers
         $this->persistEntity($offer);
     }
 
+    public function findAll(): array
+    {
+        return $this->getORMRepository(Offer::class)->findAll();
+    }
+
     public function getOfferById(UuidInterface $id): ?Offer
     {
         return $this->getORMRepository(Offer::class)->findOneBy(['id' => $id]);

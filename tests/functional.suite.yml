@@ -19,6 +19,7 @@ modules:
         - App\Tests\Module\SharedKernel\ApiModule
         - App\Tests\Module\SharedKernel\MessengerModule
         - App\Tests\Module\User\UserModule
+        - App\Tests\Module\Employer\EmployerModule
 env:
     doctrine:
         modules:

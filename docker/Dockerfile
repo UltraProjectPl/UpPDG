@@ -35,3 +35,15 @@ RUN a2dissite 000-default && a2ensite vhost
 
 RUN usermod -u 1000 www-data
 RUN chown www-data /var/www
+
+FROM api as worker
+
+COPY supervisord.conf /etc/supervisor.d/messenger.ini
+
+CMD ["/usr/bin/supervisord"]
+
+FROM api as scheduler
+
+COPY cron/crontab /etc/crontabs/www-data
+
+CMD ["/usr/sbin/crond", "-f", "-L", "/dev/stdout"]

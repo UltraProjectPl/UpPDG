@@ -46,6 +46,7 @@ class OfferTest extends Unit
             ],
             'remoteWorkPossible' => $offer->isRemoteWorkPossible(),
             'remoteWorkOnly' => $offer->isRemoteWorkOnly(),
+            'active' => $offer->isActive(),
             'nip' => $offer->getNip(),
             'tin' => $offer->getTin(),
             'createdAt' => (array) $offer->getCreatedAt(),

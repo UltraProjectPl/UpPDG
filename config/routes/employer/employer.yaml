@@ -2,3 +2,13 @@ offer_add:
   path: /offer/add
   controller: App\Employer\UserInterface\Controller\AddOfferController::index
   methods: POST
+
+offer_all:
+  path: /offers
+  controller: App\Employer\UserInterface\Controller\ShowOffersController::index
+  methods: GET
+
+offer_active:
+  path: /offer/active/{id}
+  controller: App\Employer\UserInterface\Controller\ActiveOfferController::index
+  methods: POST
