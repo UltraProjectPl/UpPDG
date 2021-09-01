@@ -15,9 +15,12 @@ final class FormHandlerFactory implements FormHandlerFactoryInterface
     {
     }
 
-    /** @param array<string, string> $options */
+    /**
+     * @param Request $request
+     * @param array<string, string> $options
+     */
     public function createFromRequest(
-        Request $request,
+        object $request,
         string $type,
         mixed $data = null,
         array $options = []

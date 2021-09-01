@@ -79,6 +79,16 @@
             "vendor/bin/deptrac.phar analyse config/contexts.yml",
             "vendor/bin/deptrac.phar analyse config/layers.yml"
         ],
+        "linters": [
+            "bin/console lint:yaml config",
+            "bin/console lint:yaml src"
+        ],
+        "static-analysis": [
+            "@sniffer",
+            "@stan",
+            "@deptrac",
+            "@linters"
+        ],
         "post-install-cmd": [
             "@auto-scripts"
         ],
