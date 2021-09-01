@@ -2,7 +2,16 @@ framework:
     messenger:
         default_bus: messenger.bus.commands
         buses:
-            messenger.bus.commands: ~
+            messenger.bus.commands:
+                default_middleware: false
+                middleware:
+                    - 'App\SharedKernel\Infrastructure\SymfonyIntegration\Messenger\Middleware\SynchronizeWithAsynchronousCommandsMiddleware'
+                    - 'App\SharedKernel\Infrastructure\SymfonyIntegration\Messenger\Middleware\ResetEntityManagerMiddleware'
+                    - 'App\SharedKernel\Infrastructure\SymfonyIntegration\Messenger\Middleware\ResourceLockingMiddleware'
+                    - 'App\SharedKernel\Infrastructure\SymfonyIntegration\Messenger\Middleware\LockingAsynchronousMiddleware'
+                    - 'Symfony\Bridge\Doctrine\Messenger\DoctrineTransactionMiddleware'
+                    - 'App\SharedKernel\Infrastructure\SymfonyIntegration\Messenger\Middleware\LockingMiddleware'
+                    - 'Symfony\Bridge\Doctrine\Messenger\DoctrineTransactionMiddleware'
             messenger.bus.events:
                 default_middleware: allow_no_handlers
             messenger.bus.notifications: ~
