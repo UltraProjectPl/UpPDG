@@ -121,6 +121,7 @@ class Offer implements JsonSerializable
             'city' => $this->city,
             'remoteWorkPossible' => $this->remoteWorkPossible,
             'remoteWorkOnly' => $this->remoteWorkOnly,
+            'active' => $this->active,
             'nip' => $this->nip,
             'tin' => $this->tin,
             'createdAt' => $this->createdAt,
