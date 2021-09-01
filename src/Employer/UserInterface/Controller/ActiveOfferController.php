@@ -36,7 +36,9 @@ final class ActiveOfferController
         $contextUser = $this->userContext->getCurrentUser();
 
         if (false === $offer->getCreator()->getId()->equals($contextUser->getId())) {
-            return $this->responseFactory->error(["You are not the creator of the offer '{$offer->getId()->toString()}'."]);
+            return $this->responseFactory->error(
+                ["You are not the creator of the offer '{$offer->getId()->toString()}'."]
+            );
         }
 
         $this->commandBus->dispatch(new ActiveOffer($offer));

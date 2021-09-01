@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\SharedKernel\Infrastructure\SymfonyIntegration\DependencyInjection;
@@ -18,15 +19,29 @@ final class SharedKernelExtension extends Extension
     /** @param array<string, string> $configs */
     public function load(array $configs, ContainerBuilder $container): void
     {
-        $container->registerForAutoconfiguration(CommandHandlerInterface::class)->addTag('messenger.message_handler');
-        $container->registerForAutoconfiguration(QueryHandlerInterface::class)->addTag('messenger.message_handler');
-        $container->registerForAutoconfiguration(NotificationHandlerInterface::class)->addTag('messenger.message_handler');
-        $container->registerForAutoconfiguration(EventSubscriberInterface::class)->addTag('messenger.message_handler');
-        $container->registerForAutoconfiguration(FixtureInterface::class)->addTag('app.fixture');
+        $container
+            ->registerForAutoconfiguration(CommandHandlerInterface::class)
+            ->addTag('messenger.message_handler');
+
+        $container
+            ->registerForAutoconfiguration(QueryHandlerInterface::class)
+            ->addTag('messenger.message_handler');
+
+        $container
+            ->registerForAutoconfiguration(NotificationHandlerInterface::class)
+            ->addTag('messenger.message_handler');
+
+        $container
+            ->registerForAutoconfiguration(EventSubscriberInterface::class)
+            ->addTag('messenger.message_handler');
+
+        $container
+            ->registerForAutoconfiguration(FixtureInterface::class)
+            ->addTag('app.fixture');
 
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
 
         $loader->load('services.xml');
-        $loader->load('buses.xml');;
+        $loader->load('buses.xml');
     }
 }

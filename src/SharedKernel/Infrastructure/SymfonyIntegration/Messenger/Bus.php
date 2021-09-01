@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\SharedKernel\Infrastructure\SymfonyIntegration\Messenger;
@@ -12,7 +13,6 @@ abstract class Bus
 {
     public function __construct(protected MessageBusInterface $bus)
     {
-
     }
 
     protected function addTimestamp(object $object): Envelope

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Employer\Infrastructure\SymfonyIntegration\DataFixutres;
@@ -22,7 +23,11 @@ use Doctrine\Common\DataFixtures\SharedFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
 
-final class LoadOfferData implements FixtureInterface, SharedFixtureInterface, DependentFixtureInterface, FixtureGroupInterface
+final class LoadOfferData implements
+    FixtureInterface,
+    SharedFixtureInterface,
+    DependentFixtureInterface,
+    FixtureGroupInterface
 {
     private const COUNT = 20;
 
@@ -53,7 +58,7 @@ final class LoadOfferData implements FixtureInterface, SharedFixtureInterface, D
 
         for ($i = 0; $i < self::COUNT; $i++) {
             /** @var User $user */
-            $user = $this->referenceRepository->getReference('user-'.random_int(0, 9));
+            $user = $this->referenceRepository->getReference('user-' . random_int(0, 9));
 
             $paymentSpreads = new PaymentSpreadsDto();
             $paymentSpreads->min = $faker->randomElement([3000, 4000, 5000]);

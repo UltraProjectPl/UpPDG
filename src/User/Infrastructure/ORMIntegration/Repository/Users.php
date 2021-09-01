@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\User\Infrastructure\ORMIntegration\Repository;
@@ -25,7 +26,8 @@ class Users extends EntityRepository implements DomainUsers
     {
         $slug = Transliterator::urlize($user->getFirstName() . '.' . $user->getLastName());
 
-        $results = $this->getORMRepository(User::class)
+        $results = $this
+            ->getORMRepository(User::class)
             ->createQueryBuilder('u')
             ->select('u.slug')
             ->where('u.slug LIKE :slug')
@@ -34,9 +36,6 @@ class Users extends EntityRepository implements DomainUsers
             ->getResult(Query::HYDRATE_SCALAR)
         ;
 
-
-
         return $slug . (count($results) === 0 ? '' : (string) count($results));
-
     }
 }

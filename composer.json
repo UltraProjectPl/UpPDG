@@ -72,6 +72,7 @@
             "bin/console --ansi doctrine:database:create --env=test",
             "bin/console --ansi doctrine:migrations:migrate -n --env=test"
         ],
+        "sniffer": "vendor/bin/phpcs",
         "stan": "vendor/bin/phpstan analyse -l 7 -c phpstan.neon src --ansi",
         "post-install-cmd": [
             "@auto-scripts"
@@ -98,6 +99,7 @@
         "doctrine/doctrine-fixtures-bundle": "^3.4",
         "phpstan/extension-installer": "^1.1",
         "phpstan/phpstan": "^0.12.97",
-        "phpstan/phpstan-beberlei-assert": "^0.12.6"
+        "phpstan/phpstan-beberlei-assert": "^0.12.6",
+        "squizlabs/php_codesniffer": "^3.6"
     }
 }
