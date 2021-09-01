@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\User\Infrastructure\ORMIntegration\Repository;
@@ -15,6 +16,7 @@ class Sessions extends EntityRepository implements DomainSessions
         $this->persistEntity($session);
     }
 
+    /** @return Session[] */
     public function findByActiveUserEmail(string $email): array
     {
         return $this

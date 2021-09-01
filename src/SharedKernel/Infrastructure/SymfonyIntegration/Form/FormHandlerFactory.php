@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\SharedKernel\Infrastructure\SymfonyIntegration\Form;
@@ -14,8 +15,12 @@ final class FormHandlerFactory implements FormHandlerFactoryInterface
     {
     }
 
+    /**
+     * @param Request $request
+     * @param array<string, string> $options
+     */
     public function createFromRequest(
-        Request $request,
+        object $request,
         string $type,
         mixed $data = null,
         array $options = []

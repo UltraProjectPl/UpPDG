@@ -49,6 +49,9 @@ jobs:
         env:
           DATABASE_URL: postgres://postgres:postgres@localhost:5432/UpPDG?charset=UTF-8
 
+      - name: Static analysis
+        run: composer run static-analysis
+
       - name: Run tests
         run: |
           vendor/bin/codecept build

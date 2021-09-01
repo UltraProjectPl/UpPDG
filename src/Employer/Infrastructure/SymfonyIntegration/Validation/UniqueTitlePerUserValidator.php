@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Employer\Infrastructure\SymfonyIntegration\Validation;
@@ -15,7 +16,8 @@ class UniqueTitlePerUserValidator extends ConstraintValidator
     {
     }
 
-    public function validate($value, Constraint $constraint)
+    /** @param UniqueTitlePerUser $constraint */
+    public function validate($value, Constraint $constraint): void
     {
         if (null === $value || '' === $value) {
             return;

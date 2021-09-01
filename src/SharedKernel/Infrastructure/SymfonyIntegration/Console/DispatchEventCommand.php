@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\SharedKernel\Infrastructure\SymfonyIntegration\Console;
@@ -27,7 +28,7 @@ final class DispatchEventCommand extends Command
         ;
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output): void
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $eventClass = $input->getArgument('event');
         $event = new $eventClass();
@@ -35,5 +36,7 @@ final class DispatchEventCommand extends Command
         $output->writeln('Dispatching event of class ' . $eventClass);
 
         $this->eventBus->dispatch($event);
+
+        return 0;
     }
 }

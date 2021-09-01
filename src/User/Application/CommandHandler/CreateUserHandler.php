@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\User\Application\CommandHandler;
@@ -17,7 +18,7 @@ final class CreateUserHandler implements CommandHandlerInterface
     }
 
 
-    public function __invoke(CreateUser $command)
+    public function __invoke(CreateUser $command): void
     {
         $user = new User(
             email: $command->getEmail(),

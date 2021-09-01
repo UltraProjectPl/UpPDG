@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\User\Infrastructure\SymfonyIntegration\Form\Type\Security;
@@ -28,25 +29,25 @@ final class RegisterForm extends AbstractType implements RegisterFormInterface
                     new Email(),
                     new Length(['max' => 255]),
                     new UniqueEmail(),
-                ]
+                ],
             ])
             ->add('firstName', TextType::class, [
                 'constraints' => [
                     new NotBlank(),
                     new Length(['max' => 255]),
-                ]
+                ],
             ])
             ->add('lastName', TextType::class, [
                 'constraints' => [
                     new NotBlank(),
                     new Length(['max' => 255]),
-                ]
+                ],
             ])
             ->add('password', PasswordType::class, [
                 'constraints' => [
                     new NotBlank(),
                     new Length(['min' => 6, 'max' => 32]),
-                ]
+                ],
             ]);
     }
 

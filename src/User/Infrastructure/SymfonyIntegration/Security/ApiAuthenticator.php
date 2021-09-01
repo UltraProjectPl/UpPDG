@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\User\Infrastructure\SymfonyIntegration\Security;
@@ -42,6 +43,8 @@ final class ApiAuthenticator extends AbstractAuthenticator
 
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception): ?Response
     {
-        return $this->responseFactory->error(strtr($exception->getMessageKey(), $exception->getMessageData()), Response::HTTP_UNAUTHORIZED);
+        return $this
+            ->responseFactory
+            ->error(strtr($exception->getMessageKey(), $exception->getMessageData()), Response::HTTP_UNAUTHORIZED);
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Employer\Domain;
@@ -110,6 +111,7 @@ class Offer implements JsonSerializable
         return $this;
     }
 
+    /** @return array<string, mixed> */
     public function jsonSerialize(): array
     {
         return [

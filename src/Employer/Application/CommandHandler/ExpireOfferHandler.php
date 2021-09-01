@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Employer\Application\CommandHandler;
@@ -15,7 +16,7 @@ final class ExpireOfferHandler implements CommandHandlerInterface
     {
     }
 
-    public function __invoke(ExpireOffer $command)
+    public function __invoke(ExpireOffer $command): void
     {
         $offer = $command->getOffer();
         $offer->deactivate();

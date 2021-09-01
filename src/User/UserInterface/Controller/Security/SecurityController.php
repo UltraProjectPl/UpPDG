@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\User\UserInterface\Controller\Security;
@@ -41,7 +42,10 @@ final class SecurityController
         $dto = $formHandler->getData();
 
         $user = $this->queryBus->query(new UserByEmail($dto->email));
-        if (false === $user instanceof User || false === PasswordHashing::passwordVerify($user->getPassword(), $dto->password)) {
+        if (
+            false === $user instanceof User ||
+            false === PasswordHashing::passwordVerify($user->getPassword(), $dto->password)
+        ) {
             return $this->responseFactory->error('Invalid login data');
         }
 
@@ -57,6 +61,5 @@ final class SecurityController
         }
 
         return $this->responseFactory->authorization($sessions[0]->getToken());
-
     }
 }

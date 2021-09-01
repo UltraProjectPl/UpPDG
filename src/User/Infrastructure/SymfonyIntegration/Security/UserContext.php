@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\User\Infrastructure\SymfonyIntegration\Security;
@@ -24,6 +25,6 @@ final class UserContext implements UserContextInterface
         /** @var SecurityUser $securityUser */
         $securityUser = $this->security->getUser();
 
-        return $securityUser?->getUser();
+        return $securityUser->getUser();
     }
 }

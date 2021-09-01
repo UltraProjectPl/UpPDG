@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\SharedKernel\Infrastructure\ORMIntegration\Repository;
@@ -25,6 +26,7 @@ abstract class EntityRepository
         $this->getManagerForClass($entity)->remove($entity);
     }
 
+    /** @param class-string<mixed> $class */
     protected function getORMRepository(string $class): ORMEntityRepository
     {
         $repository = $this->registry->getRepository($class);
@@ -36,7 +38,7 @@ abstract class EntityRepository
         throw new Exception("Class repository was expected to be instanceof of ORMEntityRepository but is not.");
     }
 
-    protected function getManagerForClass($class): EntityManagerInterface
+    protected function getManagerForClass(object|string $class): EntityManagerInterface
     {
         $entityManager = $this->registry->getManagerForClass(
             true === is_object($class) ? get_class($class) : $class

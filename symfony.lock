@@ -202,6 +202,15 @@
     "phpspec/prophecy": {
         "version": "1.13.0"
     },
+    "phpstan/extension-installer": {
+        "version": "1.1.0"
+    },
+    "phpstan/phpstan": {
+        "version": "0.12.97"
+    },
+    "phpstan/phpstan-beberlei-assert": {
+        "version": "0.12.6"
+    },
     "phpunit/php-code-coverage": {
         "version": "9.2.6"
     },
@@ -320,6 +329,18 @@
     },
     "softcreatr/jsonpath": {
         "version": "0.7.5"
+    },
+    "squizlabs/php_codesniffer": {
+        "version": "3.6",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "3.6",
+            "ref": "1019e5c08d4821cb9b77f4891f8e9c31ff20ac6f"
+        },
+        "files": [
+            "phpcs.xml.dist"
+        ]
     },
     "symfony/amqp-messenger": {
         "version": "v5.3.4"

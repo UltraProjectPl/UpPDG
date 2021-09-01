@@ -1,0 +1,5 @@
+parameters:
+    inferPrivatePropertyTypeFromConstructor: true
+    checkGenericClassInNonGenericObjectType: false
+    excludes_analyse:
+        - '%rootDir%/../../../migrations'

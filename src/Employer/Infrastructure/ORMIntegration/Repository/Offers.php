@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Employer\Infrastructure\ORMIntegration\Repository;
@@ -16,6 +17,7 @@ final class Offers extends EntityRepository implements DomainOffers
         $this->persistEntity($offer);
     }
 
+    /** @return Offer[] */
     public function findAll(): array
     {
         return $this->getORMRepository(Offer::class)->findAll();

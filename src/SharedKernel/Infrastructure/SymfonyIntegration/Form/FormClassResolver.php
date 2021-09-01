@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\SharedKernel\Infrastructure\SymfonyIntegration\Form;
@@ -8,6 +9,7 @@ use InvalidArgumentException;
 
 final class FormClassResolver
 {
+    /** @param FormInterface[] $forms */
     public function __construct(private array $forms)
     {
     }

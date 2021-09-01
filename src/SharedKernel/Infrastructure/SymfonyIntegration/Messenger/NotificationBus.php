@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\SharedKernel\Infrastructure\SymfonyIntegration\Messenger;
@@ -8,6 +9,7 @@ use App\SharedKernel\Application\Notification\NotificationInterface;
 
 final class NotificationBus extends Bus implements NotificationBusInterface
 {
+    /** @var NotificationInterface[] */
     private array $notifications = [];
 
     public function send(NotificationInterface $notification): void
@@ -24,7 +26,7 @@ final class NotificationBus extends Bus implements NotificationBusInterface
         $this->reset();
     }
 
-    private function reset()
+    private function reset(): void
     {
         $this->notifications = [];
     }

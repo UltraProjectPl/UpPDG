@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\User\Domain;
@@ -64,6 +65,7 @@ class User implements JsonSerializable
         return $this->slug;
     }
 
+    /** @return array<string, mixed> */
     public function jsonSerialize(): array
     {
         return [

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Employer\Domain;
@@ -10,6 +11,7 @@ interface Offers
 {
     public function add(Offer $offer): void;
 
+    /** @return Offer[] */
     public function findAll(): array;
 
     public function getOfferById(UuidInterface $id): ?Offer;
