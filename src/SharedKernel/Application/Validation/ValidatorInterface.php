@@ -5,5 +5,6 @@ namespace App\SharedKernel\Application\Validation;
 
 interface ValidatorInterface
 {
+    /** @return ValidationError[] */
     public function validate(mixed $data): array;
 }

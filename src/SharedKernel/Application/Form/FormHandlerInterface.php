@@ -8,5 +8,7 @@ interface FormHandlerInterface
     public function isSubmissionValid(): bool;
     public function getData(): mixed;
     public function createView(): FormViewInterface;
+
+    /** @return array<string, string[]>> */
     public function getErrors(): array;
 }

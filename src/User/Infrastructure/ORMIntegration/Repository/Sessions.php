@@ -15,6 +15,7 @@ class Sessions extends EntityRepository implements DomainSessions
         $this->persistEntity($session);
     }
 
+    /** @return Session[] */
     public function findByActiveUserEmail(string $email): array
     {
         return $this

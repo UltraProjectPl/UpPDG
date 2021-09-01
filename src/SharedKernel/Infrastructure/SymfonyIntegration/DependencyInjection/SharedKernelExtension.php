@@ -15,6 +15,7 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 final class SharedKernelExtension extends Extension
 {
+    /** @param array<string, string> $configs */
     public function load(array $configs, ContainerBuilder $container): void
     {
         $container->registerForAutoconfiguration(CommandHandlerInterface::class)->addTag('messenger.message_handler');

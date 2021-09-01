@@ -7,6 +7,6 @@ use Symfony\Component\HttpFoundation\Request;
 
 interface FormHandlerFactoryInterface
 {
+    /** @param array<string, string> $options */
     public function createFromRequest(Request $request, string $type, mixed $data = null, array $options = []): FormHandlerInterface;
-
 }

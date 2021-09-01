@@ -64,6 +64,7 @@ class User implements JsonSerializable
         return $this->slug;
     }
 
+    /** @return array<string, mixed> */
     public function jsonSerialize(): array
     {
         return [

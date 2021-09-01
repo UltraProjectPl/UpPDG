@@ -8,6 +8,7 @@ use InvalidArgumentException;
 
 final class FormClassResolver
 {
+    /** @param FormInterface[] $forms */
     public function __construct(private array $forms)
     {
     }

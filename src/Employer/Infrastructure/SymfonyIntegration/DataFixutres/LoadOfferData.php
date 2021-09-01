@@ -58,7 +58,9 @@ final class LoadOfferData implements FixtureInterface, SharedFixtureInterface, D
             $paymentSpreads = new PaymentSpreadsDto();
             $paymentSpreads->min = $faker->randomElement([3000, 4000, 5000]);
             $paymentSpreads->max = $faker->randomElement([7000, 10000, 15000]);
-            $paymentSpreads->currency = $faker->currencyCode();
+            /** @var non-empty-string $nonEmptyString */
+            $nonEmptyString = $faker->currencyCode();
+            $paymentSpreads->currency = $nonEmptyString;
 
             $offer = new Offer(
                 creator: $user,

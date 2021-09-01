@@ -16,6 +16,7 @@ final class Offers extends EntityRepository implements DomainOffers
         $this->persistEntity($offer);
     }
 
+    /** @return Offer[] */
     public function findAll(): array
     {
         return $this->getORMRepository(Offer::class)->findAll();

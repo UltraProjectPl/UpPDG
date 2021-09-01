@@ -26,6 +26,7 @@ class PaymentSpreads implements JsonSerializable
         return $this->max;
     }
 
+    /** @return array<string, Money> */
     public function jsonSerialize(): array
     {
         return [

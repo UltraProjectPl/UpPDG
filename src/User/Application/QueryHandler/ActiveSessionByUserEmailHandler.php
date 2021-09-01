@@ -15,6 +15,7 @@ final class ActiveSessionByUserEmailHandler implements QueryHandlerInterface
     {
     }
 
+    /** @return Session[] */
     public function __invoke(ActiveSessionByUserEmail $query): array
     {
         return $this->sessions->findByActiveUserEmail($query->getEmail());

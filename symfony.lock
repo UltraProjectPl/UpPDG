@@ -202,6 +202,15 @@
     "phpspec/prophecy": {
         "version": "1.13.0"
     },
+    "phpstan/extension-installer": {
+        "version": "1.1.0"
+    },
+    "phpstan/phpstan": {
+        "version": "0.12.97"
+    },
+    "phpstan/phpstan-beberlei-assert": {
+        "version": "0.12.6"
+    },
     "phpunit/php-code-coverage": {
         "version": "9.2.6"
     },

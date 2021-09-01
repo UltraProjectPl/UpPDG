@@ -10,6 +10,7 @@ interface Offers
 {
     public function add(Offer $offer): void;
 
+    /** @return Offer[] */
     public function findAll(): array;
 
     public function getOfferById(UuidInterface $id): ?Offer;
