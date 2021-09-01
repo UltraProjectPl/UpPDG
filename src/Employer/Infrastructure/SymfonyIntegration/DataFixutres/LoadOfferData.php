@@ -62,7 +62,7 @@ final class LoadOfferData implements FixtureInterface, SharedFixtureInterface, D
 
             $offer = new Offer(
                 creator: $user,
-                title: $faker->title(),
+                title: $faker->sentence(),
                 companyName: $faker->company(),
                 paymentSpreads: $paymentSpreads->toEntity(),
                 city: $faker->city(),

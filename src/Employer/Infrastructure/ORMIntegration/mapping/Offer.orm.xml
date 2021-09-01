@@ -16,7 +16,7 @@
         <field name="remoteWorkPossible" type="boolean" />
         <field name="remoteWorkOnly" type="boolean" />
 
-        <field name="disabled" type="boolean" />
+        <field name="active" type="boolean" />
 
         <field name="nip" type="boolean" nullable="true" />
         <field name="tin" type="boolean" nullable="true" />

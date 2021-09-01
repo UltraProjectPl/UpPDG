@@ -30,10 +30,6 @@ final class AddOfferController
 
     public function index(Request $request): Response
     {
-        if (false === $this->userContext->isLoggedIn()) {
-            return $this->responseFactory->error([], Response::HTTP_UNAUTHORIZED);
-        }
-
         $creator = $this->userContext->getCurrentUser();
 
         $formHandler = $this->formHandlerFactory->createFromRequest($request, OfferFormInterface::class);

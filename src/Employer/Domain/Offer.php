@@ -90,7 +90,7 @@ class Offer implements JsonSerializable
 
     public function activate(): self
     {
-        if (false === $this->active) {
+        if (true === $this->active) {
             throw new RuntimeException("Offer '{$this->id->toString()}' is already active.");
         }
 
@@ -101,7 +101,7 @@ class Offer implements JsonSerializable
 
     public function deactivate(): self
     {
-        if (true === $this->active) {
+        if (false === $this->active) {
             throw new RuntimeException("Offer '{$this->id->toString()}' is already deactivate.");
         }
 
